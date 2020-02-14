@@ -1,0 +1,6 @@
+{
+    "name": "Simple Heroku app",
+    "description": "Super simple Heroku app in node.js using Redis",
+    "success_url": "/",
+    "addons": ["heroku-redis:hobby-dev", "papertrail:choklad"]
+  }
