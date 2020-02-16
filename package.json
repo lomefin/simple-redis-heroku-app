@@ -1,5 +1,5 @@
 {
-  "name": "heroku_enablement",
+  "name": "simple-redis-heroku-app",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
