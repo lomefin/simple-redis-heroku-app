@@ -40,8 +40,9 @@ app.get("/addpeople", (req, res) => {
     })
 })
 app.get("/clear", (req, res) => {
-    client.del("people");
-    res.sendStatus(200);
+    client.set("people",JSON.stringify([]), (err, reply) => {
+        res.sendStatus(200);
+    });
 })
 app.post("/people", (req, res) => {
     console.log(req.body)
