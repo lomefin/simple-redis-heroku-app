@@ -1,8 +1,9 @@
 const express = require("express");
 const redis = require("redis");
-const exphbs = require("express-handlebars")
+const exphbs = require("express-handlebars");
 const path = require("path");
 var cors = require('cors');
+const bodyParser = require('body-parser')
 require("dotenv").config();
 
 const client = redis.createClient({
@@ -12,6 +13,7 @@ const client = redis.createClient({
 const app = express();
 app.use(express.static(path.join(__dirname, "public")));
 app.use(cors());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.engine("handlebars", exphbs({"defaultLayout": "main"}));
 app.set("view engine", "handlebars");
 
@@ -32,11 +34,12 @@ app.get("/people", (req, res) => {
 })
 app.get("/addpeople", (req, res) => {
     client.set("people", req.query.data, (err, reply) =>{
-        res.send(200);
+        res.sendStatus(200);
     })
 })
 app.get("/clear", (req, res) => {
     client.del("people");
+    res.sendStatus(200);
 })
 app.post("/people", (req, res) => {
     console.log(req.body)
