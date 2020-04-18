@@ -22,4 +22,10 @@ app.get("/", (req, res) => {
         })
     })
 })
+
+app.get("/people", (req, res) => {
+    client.get("people", (err, reply) => {
+        res.render("root", reply);
+    })
+})
 app.listen(process.env.PORT || 8080);
