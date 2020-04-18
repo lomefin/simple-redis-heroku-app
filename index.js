@@ -35,10 +35,11 @@ app.get("/addpeople", (req, res) => {
         res.send(200);
     })
 })
+app.get("/clear", (req, res) => {
+    client.del("people");
+})
 app.post("/people", (req, res) => {
     console.log(req.body)
-    client.set("people", req.body, (err, reply) =>{
-        res.send(200);
-    })
+    client.set("people", req.body);
 })
 app.listen(process.env.PORT || 8080);
