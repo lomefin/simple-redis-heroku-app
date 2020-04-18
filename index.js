@@ -45,7 +45,7 @@ app.get("/clear", (req, res) => {
 })
 app.post("/people", (req, res) => {
     console.log(req.body)
-    client.set("people", req.body, (err, reply) => {
+    client.set("people", JSON.stringify(req.body), (err, reply) => {
         res.sendStatus(200);
     });
 })
