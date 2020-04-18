@@ -2,6 +2,7 @@ const express = require("express");
 const redis = require("redis");
 const exphbs = require("express-handlebars")
 const path = require("path");
+var cors = require('cors');
 require("dotenv").config();
 
 const client = redis.createClient({
