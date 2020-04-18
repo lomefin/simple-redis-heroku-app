@@ -36,7 +36,8 @@ app.get("/addpeople", (req, res) => {
     })
 })
 app.post("/people", (req, res) => {
-    client.set("people", (err, reply) =>{
+    console.log(req.body)
+    client.set("people", req.body, (err, reply) =>{
         res.send(200);
     })
 })
