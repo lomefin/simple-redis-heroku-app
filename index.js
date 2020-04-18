@@ -25,7 +25,7 @@ app.get("/", (req, res) => {
 
 app.get("/people", (req, res) => {
     client.get("people", (err, reply) => {
-        res.render("root", reply);
+        res.send(reply);
     })
 })
 app.listen(process.env.PORT || 8080);
