@@ -28,4 +28,14 @@ app.get("/people", (req, res) => {
         res.send(reply);
     })
 })
+app.get("/addpeople", (req, res) => {
+    client.set("people", req.query.data, (err, reply) =>{
+        res.send(200);
+    })
+})
+app.post("/people", (req, res) => {
+    client.set("people", (err, reply) =>{
+        res.send(200);
+    })
+})
 app.listen(process.env.PORT || 8080);
