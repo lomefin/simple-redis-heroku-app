@@ -11,6 +11,7 @@ const client = redis.createClient({
 
 const app = express();
 app.use(express.static(path.join(__dirname, "public")));
+app.use(cors());
 app.engine("handlebars", exphbs({"defaultLayout": "main"}));
 app.set("view engine", "handlebars");
 
