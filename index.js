@@ -55,7 +55,10 @@ app.post("/lightstate", (req, res) => {
     client.set("lightstate", JSON.stringify(req.body), (err, reply) => {
         res.sendStatus(200);
     });
-    pusher.trigger('lights-status','lights-status-update', req.body)
+    client.get("lightstate", (err, reply) => {
+        pusher.trigger('lights-status', 'lights-status-update', reply)
+    })
+    //pusher.trigger('lights-status','lights-status-update', req.body)
 })
 
 app.get("/people", (req, res) => {
