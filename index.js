@@ -29,6 +29,19 @@ app.get("/", (req, res) => {
     })
 })
 
+app.get("/lightstate", (req, res) => {
+    client.get("lightstate", (err, reply) => {
+        res.send(reply);
+    })
+})
+
+app.post("/lightstate", (req, res) => {
+    console.log(req.body)
+    client.set("lightstate", JSON.stringify(req.body), (err, reply) => {
+        res.sendStatus(200);
+    });
+})
+
 app.get("/people", (req, res) => {
     client.get("people", (err, reply) => {
         res.send(reply);
