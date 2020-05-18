@@ -83,13 +83,13 @@ app.post("/people", (req, res) => {
     });
 })
 
-app.get("/projects", (req, res) => {
+app.get("/tracker/projects", (req, res) => {
   client.get("projects", (err, reply) => {
     res.send(reply)
   })
 })
 
-app.post("/projects", (req, res) => {
+app.post("/tracker/projects", (req, res) => {
   client.set("projects", JSON.stringify(req.body), (err, reply) => {
     res.sendStatus(200);
   });
