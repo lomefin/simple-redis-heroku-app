@@ -25,6 +25,14 @@ pusher.trigger('my-channel', 'my-event', {
   "message": "hello world"
 });
 
+var trackerPusher = new Pusher({
+  appId: '1002848',
+  key: '0493156befe586a388f5',
+  secret: '8a82ccc23dbb67bb49ad',
+  cluster: 'us2',
+  encrypted: true
+});
+
 const app = express();
 app.use(express.static(path.join(__dirname, "public")));
 app.use(cors());
@@ -86,6 +94,18 @@ app.post("/people", (req, res) => {
 app.get("/tracker/projects", (req, res) => {
   client.get("projects", (err, reply) => {
     res.send(reply)
+  })
+})
+
+
+app.post("/tracker/state", (req, res) => {
+  // { project, currentProject}
+
+  client.set("tracker-projects-state", JSON.stringify(req.body), (err, reply) => {
+    res.sendStatus(200);
+  })
+  client.get("tracker-project-state", (err, reply) => {
+    trackerPusher.trigger('project-state', 'project-state-changed', reply);
   })
 })
 
