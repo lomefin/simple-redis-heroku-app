@@ -82,6 +82,18 @@ app.post("/people", (req, res) => {
         res.sendStatus(200);
     });
 })
+
+app.get("/projects", (req, res) => {
+  client.get("projects", (err, reply) => {
+    res.send(reply)
+  })
+})
+
+app.post("/projects", (res, res) => {
+  client.set("projects", JSON.stringify(req.body), (err, reply) => {
+    res.sendStatus(200)
+  })
+})
 app.listen(process.env.PORT || 8080);
 
 
