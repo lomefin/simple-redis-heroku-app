@@ -89,10 +89,10 @@ app.get("/projects", (req, res) => {
   })
 })
 
-app.post("/projects", (res, res) => {
+app.post("/projects", (req, res) => {
   client.set("projects", JSON.stringify(req.body), (err, reply) => {
-    res.sendStatus(200)
-  })
+    res.sendStatus(200);
+  });
 })
 app.listen(process.env.PORT || 8080);
 
