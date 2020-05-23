@@ -21,9 +21,6 @@ var pusher = new Pusher({
   encrypted: true
 });
 
-pusher.trigger('my-channel', 'my-event', {
-  "message": "hello world"
-});
 
 var trackerPusher = new Pusher({
   appId: '1002848',
@@ -53,9 +50,10 @@ app.get("/", (req, res) => {
 })
 
 app.get("/lightstate", (req, res) => {
-    client.get("lightstate", (err, reply) => {
-        res.send(reply);
-    })
+  client.get("lightstate", (err, reply) => {
+    res.send(reply);
+    pusher.trigger('lights-status', 'lights-status-update', reply);
+  })
 })
 
 app.post("/lightstate", (req, res) => {
